@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: reports
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:db/data.sql
+
+  config:
+    import: configserver:${CONFIG_MANAGER_URL:http://localhost:8000}
+
+  datasource:
+    url: ${MYSQL_URL:jdbc:mysql://localhost:3310}/${MYSQL_SCHEMA:reports}
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD}
+
+server:
+  port: 8010
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health
