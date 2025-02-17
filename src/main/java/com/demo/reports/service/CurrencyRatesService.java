@@ -7,7 +7,6 @@ import static com.demo.reports.util.Currency.SOL;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
