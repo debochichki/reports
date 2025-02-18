@@ -16,9 +16,6 @@ spring:
     username: ${MYSQL_USER:root}
     password: ${MYSQL_PASSWORD}
 
-server:
-  port: 8010
-
 management:
   endpoints:
     web:
