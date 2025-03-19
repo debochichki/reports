@@ -12,32 +12,49 @@ import java.util.Map;
 
 import jakarta.annotation.PostConstruct;
 
-import com.demo.reports.config.CurrencyConfigProperties;
+import com.demo.reports.config.CurrencyRatesConfigProperties;
 import com.demo.reports.util.CurrencyRatesProvider;
 
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 
+/**
+ * {@link Service} for handling operations related to currency rates and currency conversion
+ *
+ * @author dimitar.debochichki
+ */
 @RefreshScope
 @Service
 @RequiredArgsConstructor
 public class CurrencyRatesService {
     
-    private final CurrencyConfigProperties currencyConfigProperties;
+    private final CurrencyRatesConfigProperties currencyRatesConfigProperties;
     private Map<String, BigDecimal> toDollarBuckRates;
     
     @PostConstruct
     private void postConstruct() {
-        toDollarBuckRates = switch (CurrencyRatesProvider.valueOf(currencyConfigProperties.getProvider())) {
+        toDollarBuckRates = switch (CurrencyRatesProvider.valueOf(currencyRatesConfigProperties.getProvider())) {
             case COINS -> getCoinsRates();
             case EXCHANGE -> getExchangeRates();
         };
     }
     
-    public Map<String, BigDecimal> getCurrencyRates() {
+    /**
+     * Get rates for Currency rates for conversion to DollarBucks
+     *
+     * @return {@link Map} to DollarBucks rates
+     */
+    public Map<String, BigDecimal> getToDollarBucksRates() {
         return Collections.unmodifiableMap(toDollarBuckRates);
     }
     
+    /**
+     * Convert amount from a given currency to corresponding DollarBucks amount
+     *
+     * @param fromCurrency the currency code of the currency to be converted
+     * @param amount to be converted
+     * @return DollarBucks converted amount
+     */
     public BigDecimal convertToDollarBucks(final String fromCurrency, final BigDecimal amount) {
         return toDollarBuckRates.get(fromCurrency).multiply(amount);
     }

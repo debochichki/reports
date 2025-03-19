@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * {@link RestController} providing operations for fetching data for reports
+ *
+ * @author dimitar.debochichki
+ */
 @RestController
 @RequestMapping("/reports")
 @RequiredArgsConstructor
@@ -24,11 +29,11 @@ public class ReportsController {
     
     @GetMapping("/currency-rates")
     public Map<String, BigDecimal> getCurrencyRates() {
-        return currencyRatesService.getCurrencyRates();
+        return currencyRatesService.getToDollarBucksRates();
     }
     
     @GetMapping("/player-totals")
     public List<PlayerTotals> getPlayerTotals() {
-        return reportsService.getPlayerTotals();
+        return reportsService.getPlayerTotalsInDollarBucks();
     }
 }
