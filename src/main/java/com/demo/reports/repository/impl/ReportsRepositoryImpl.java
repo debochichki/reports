@@ -13,6 +13,11 @@ import com.demo.reports.repository.ReportsRepository;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Jooq/MySql implementation of the {@link ReportsRepository}.
+ *
+ * @author dimitar.debochichki
+ */
 @Repository
 @RequiredArgsConstructor
 public class ReportsRepositoryImpl implements ReportsRepository {

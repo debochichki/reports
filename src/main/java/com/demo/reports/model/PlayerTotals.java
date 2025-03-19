@@ -6,6 +6,11 @@ import lombok.With;
 
 import java.math.BigDecimal;
 
+/**
+ * DTO for player total played amounts, converted to a given currency
+ *
+ * @author dimitar.debochichki
+ */
 @Data
 @With
 @AllArgsConstructor

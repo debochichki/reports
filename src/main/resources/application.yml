@@ -2,11 +2,6 @@ spring:
   application:
     name: reports
 
-  sql:
-    init:
-      mode: always
-      data-locations: classpath:db/data.sql
-
   config:
     import: configserver:${CONFIG_MANAGER_URL:http://localhost:8000}
 
@@ -21,3 +16,7 @@ management:
     web:
       exposure:
         include: refresh, health
+
+currency-rates:
+  provider: COINS
+  url: coins.com

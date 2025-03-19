@@ -23,7 +23,12 @@ public class ReportsService {
     private final ReportsRepository reportsRepository;
     private final CurrencyRatesService currencyRatesService;
     
-    public List<PlayerTotals> getPlayerTotals() {
+    /**
+     * Get player totals converted to DollarBucks
+     *
+     * @return player totals list
+     */
+    public List<PlayerTotals> getPlayerTotalsInDollarBucks() {
         return reportsRepository.getPlayerTotalsPerCurrency().stream()
             .map(this::convertPlayerTotalsToDollarBucks)
             .collect(groupingBy(playerTotals -> new PlayerTotalsGroupingFields(playerTotals.getPlayer(), playerTotals.getCurrency()),
