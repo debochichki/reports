@@ -11,6 +11,14 @@ spring:
     username: ${MYSQL_USER:root}
     password: ${MYSQL_PASSWORD}
 
+  kafka:
+    bootstrap-servers: kafka.kafka:9092
+  cloud:
+    bus:
+      enabled: true
+      refresh:
+        enabled: true
+
 management:
   endpoints:
     web:
